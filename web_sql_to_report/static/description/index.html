@@ -1,477 +1,291 @@
-<?xml version="1.0" encoding="utf-8" ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="generator" content="Docutils 0.15.1: http://docutils.sourceforge.net/" />
-<title>Web SQL to Report</title>
-<style type="text/css">
-
-/*
-:Author: David Goodger (goodger@python.org)
-:Id: $Id: html4css1.css 7952 2016-07-26 18:15:59Z milde $
-:Copyright: This stylesheet has been placed in the public domain.
-
-Default cascading style sheet for the HTML output of Docutils.
-
-See http://docutils.sf.net/docs/howto/html-stylesheets.html for how to
-customize this style sheet.
-*/
-
-/* used to remove borders from tables and images */
-.borderless, table.borderless td, table.borderless th {
-  border: 0 }
-
-table.borderless td, table.borderless th {
-  /* Override padding for "table.docutils td" with "! important".
-     The right padding separates the table cells. */
-  padding: 0 0.5em 0 0 ! important }
-
-.first {
-  /* Override more specific margin styles with "! important". */
-  margin-top: 0 ! important }
-
-.last, .with-subtitle {
-  margin-bottom: 0 ! important }
-
-.hidden {
-  display: none }
-
-.subscript {
-  vertical-align: sub;
-  font-size: smaller }
-
-.superscript {
-  vertical-align: super;
-  font-size: smaller }
-
-a.toc-backref {
-  text-decoration: none ;
-  color: black }
-
-blockquote.epigraph {
-  margin: 2em 5em ; }
-
-dl.docutils dd {
-  margin-bottom: 0.5em }
-
-object[type="image/svg+xml"], object[type="application/x-shockwave-flash"] {
-  overflow: hidden;
-}
-
-/* Uncomment (and remove this text!) to get bold-faced definition list terms
-dl.docutils dt {
-  font-weight: bold }
-*/
-
-div.abstract {
-  margin: 2em 5em }
-
-div.abstract p.topic-title {
-  font-weight: bold ;
-  text-align: center }
-
-div.admonition, div.attention, div.caution, div.danger, div.error,
-div.hint, div.important, div.note, div.tip, div.warning {
-  margin: 2em ;
-  border: medium outset ;
-  padding: 1em }
-
-div.admonition p.admonition-title, div.hint p.admonition-title,
-div.important p.admonition-title, div.note p.admonition-title,
-div.tip p.admonition-title {
-  font-weight: bold ;
-  font-family: sans-serif }
-
-div.attention p.admonition-title, div.caution p.admonition-title,
-div.danger p.admonition-title, div.error p.admonition-title,
-div.warning p.admonition-title, .code .error {
-  color: red ;
-  font-weight: bold ;
-  font-family: sans-serif }
-
-/* Uncomment (and remove this text!) to get reduced vertical space in
-   compound paragraphs.
-div.compound .compound-first, div.compound .compound-middle {
-  margin-bottom: 0.5em }
-
-div.compound .compound-last, div.compound .compound-middle {
-  margin-top: 0.5em }
-*/
-
-div.dedication {
-  margin: 2em 5em ;
-  text-align: center ;
-  font-style: italic }
-
-div.dedication p.topic-title {
-  font-weight: bold ;
-  font-style: normal }
-
-div.figure {
-  margin-left: 2em ;
-  margin-right: 2em }
-
-div.footer, div.header {
-  clear: both;
-  font-size: smaller }
-
-div.line-block {
-  display: block ;
-  margin-top: 1em ;
-  margin-bottom: 1em }
-
-div.line-block div.line-block {
-  margin-top: 0 ;
-  margin-bottom: 0 ;
-  margin-left: 1.5em }
-
-div.sidebar {
-  margin: 0 0 0.5em 1em ;
-  border: medium outset ;
-  padding: 1em ;
-  background-color: #ffffee ;
-  width: 40% ;
-  float: right ;
-  clear: right }
-
-div.sidebar p.rubric {
-  font-family: sans-serif ;
-  font-size: medium }
-
-div.system-messages {
-  margin: 5em }
-
-div.system-messages h1 {
-  color: red }
-
-div.system-message {
-  border: medium outset ;
-  padding: 1em }
-
-div.system-message p.system-message-title {
-  color: red ;
-  font-weight: bold }
-
-div.topic {
-  margin: 2em }
-
-h1.section-subtitle, h2.section-subtitle, h3.section-subtitle,
-h4.section-subtitle, h5.section-subtitle, h6.section-subtitle {
-  margin-top: 0.4em }
-
-h1.title {
-  text-align: center }
-
-h2.subtitle {
-  text-align: center }
-
-hr.docutils {
-  width: 75% }
-
-img.align-left, .figure.align-left, object.align-left, table.align-left {
-  clear: left ;
-  float: left ;
-  margin-right: 1em }
-
-img.align-right, .figure.align-right, object.align-right, table.align-right {
-  clear: right ;
-  float: right ;
-  margin-left: 1em }
-
-img.align-center, .figure.align-center, object.align-center {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-table.align-center {
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.align-left {
-  text-align: left }
-
-.align-center {
-  clear: both ;
-  text-align: center }
-
-.align-right {
-  text-align: right }
-
-/* reset inner alignment in figures */
-div.align-right {
-  text-align: inherit }
-
-/* div.align-center * { */
-/*   text-align: left } */
-
-.align-top    {
-  vertical-align: top }
-
-.align-middle {
-  vertical-align: middle }
-
-.align-bottom {
-  vertical-align: bottom }
-
-ol.simple, ul.simple {
-  margin-bottom: 1em }
-
-ol.arabic {
-  list-style: decimal }
-
-ol.loweralpha {
-  list-style: lower-alpha }
-
-ol.upperalpha {
-  list-style: upper-alpha }
-
-ol.lowerroman {
-  list-style: lower-roman }
-
-ol.upperroman {
-  list-style: upper-roman }
-
-p.attribution {
-  text-align: right ;
-  margin-left: 50% }
-
-p.caption {
-  font-style: italic }
-
-p.credits {
-  font-style: italic ;
-  font-size: smaller }
-
-p.label {
-  white-space: nowrap }
-
-p.rubric {
-  font-weight: bold ;
-  font-size: larger ;
-  color: maroon ;
-  text-align: center }
-
-p.sidebar-title {
-  font-family: sans-serif ;
-  font-weight: bold ;
-  font-size: larger }
-
-p.sidebar-subtitle {
-  font-family: sans-serif ;
-  font-weight: bold }
-
-p.topic-title {
-  font-weight: bold }
-
-pre.address {
-  margin-bottom: 0 ;
-  margin-top: 0 ;
-  font: inherit }
-
-pre.literal-block, pre.doctest-block, pre.math, pre.code {
-  margin-left: 2em ;
-  margin-right: 2em }
-
-pre.code .ln { color: grey; } /* line numbers */
-pre.code, code { background-color: #eeeeee }
-pre.code .comment, code .comment { color: #5C6576 }
-pre.code .keyword, code .keyword { color: #3B0D06; font-weight: bold }
-pre.code .literal.string, code .literal.string { color: #0C5404 }
-pre.code .name.builtin, code .name.builtin { color: #352B84 }
-pre.code .deleted, code .deleted { background-color: #DEB0A1}
-pre.code .inserted, code .inserted { background-color: #A3D289}
-
-span.classifier {
-  font-family: sans-serif ;
-  font-style: oblique }
-
-span.classifier-delimiter {
-  font-family: sans-serif ;
-  font-weight: bold }
-
-span.interpreted {
-  font-family: sans-serif }
-
-span.option {
-  white-space: nowrap }
-
-span.pre {
-  white-space: pre }
-
-span.problematic {
-  color: red }
-
-span.section-subtitle {
-  /* font-size relative to parent (h1..h6 element) */
-  font-size: 80% }
-
-table.citation {
-  border-left: solid 1px gray;
-  margin-left: 1px }
-
-table.docinfo {
-  margin: 2em 4em }
-
-table.docutils {
-  margin-top: 0.5em ;
-  margin-bottom: 0.5em }
-
-table.footnote {
-  border-left: solid 1px black;
-  margin-left: 1px }
-
-table.docutils td, table.docutils th,
-table.docinfo td, table.docinfo th {
-  padding-left: 0.5em ;
-  padding-right: 0.5em ;
-  vertical-align: top }
-
-table.docutils th.field-name, table.docinfo th.docinfo-name {
-  font-weight: bold ;
-  text-align: left ;
-  white-space: nowrap ;
-  padding-left: 0 }
-
-/* "booktabs" style (no vertical lines) */
-table.docutils.booktabs {
-  border: 0px;
-  border-top: 2px solid;
-  border-bottom: 2px solid;
-  border-collapse: collapse;
-}
-table.docutils.booktabs * {
-  border: 0px;
-}
-table.docutils.booktabs th {
-  border-bottom: thin solid;
-  text-align: left;
-}
-
-h1 tt.docutils, h2 tt.docutils, h3 tt.docutils,
-h4 tt.docutils, h5 tt.docutils, h6 tt.docutils {
-  font-size: 100% }
-
-ul.auto-toc {
-  list-style-type: none }
-
-</style>
-</head>
-<body>
-<div class="document" id="web-responsive">
-<h1 class="title">Web SQL to Report</h1>
-
-<!-- !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-!! This file is generated by oca-gen-addon-readme !!
-!! changes will be overwritten.                   !!
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Web-Report</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-            margin: 20px;
-            margin-left: 40px;
-            margin-right: 40px;
-        }
-        h1, h2, h3 {
-            color: #333;
-        }
-        pre {
-            background: #f4f4f4;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 20px 0;
-        }
-        table, th, td {
-            border: 1px solid #ddd;
-        }
-        th, td {
-            padding: 10px;
-            text-align: left;
-        }
-        th {
-            background-color: #f8f8f8;
-        }
-        .code {
-            background: #f4f4f4;
-            border: 1px solid #ddd;
-            padding: 10px;
-            border-radius: 5px;
-        }
-        .example img {
-            max-width: 80%;
-        }
-    </style>
+    <title>Web SQL to Report</title>
 </head>
 <body>
-    <p>Auto generate xlsx report from query result or 'list of dictionary' data.</p>
-    <p>Return XLSX Report from the given 'List of Dictionary' data.</p>
-    
-    <h3>List Of Params :</h3>
-    <ul>
-        <li><strong>report_name</strong>: File name of the report before given datetime at the end of it.</li>
-        <li><strong>data</strong>: Data with 'List of Dictionary' type, the key will be Header and the value will be inserted into each row.</li>
-        <li><strong>start_date</strong>: For report title, if this param is filled, title will be generated above header.</li>
-        <li><strong>end_date</strong>: For report title, start_date must be filled to show end_date. End date will be shown after start_date.</li>
-        <li><strong>header</strong>: Enable/Disable header (title) option. Header text will be generated from data keys. Underscores '_' will be replaced with spaces and will capitalize unless all words are uppercase.</li>
-        <li><strong>header_color</strong>: Color of the header. The default will be yellow (#FFFF00).</li>
-        <li><strong>capitalize</strong>: Enable/Disable auto capitalization for header text.</li>
-        <li><strong>numbering</strong>: Enable/Disable numbering. Numbers will be generated in the first column. The default will be True.</li>
-        <li><strong>auto_filter</strong>: Enable/Disable auto filter. 'Auto Filter' will filter the first row. The default will be True; however, this only activates when the header parameter is true.</li>
-        <li><strong>freeze_panes</strong>: Enable/Disable freeze panes. Freezes the first column. The default will be True; however, this only activates when the header parameter is true.</li>
-        <li><strong>freeze_panes_column</strong>: Freeze column from the given integer (starting from 0). The default will be 0; however, this only activates when the header & freeze_panes parameters are true.</li>
-        <li><strong>bottom_remark</strong>: Enable/Disable remark. Gives a remark at the bottom of the workbook. The remark contains the downloader's name & download date.</li>
-    </ul>
+    <section class="container mt-5 mb-5" style="font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; color: #2b3b4c;">
+        <style>
+            pre code {
+                background-color: transparent !important;
+                background: transparent !important;
+                border: none !important;
+                box-shadow: none !important;
+                padding: 0 !important;
+            }
+        </style>
+        
+        <!-- Header / Hero Section -->
+        <div class="row">
+            <div class="col-12 text-center">
+                <span class="badge badge-pill px-3 py-2 mb-3 text-uppercase font-weight-bold" style="background-color: rgba(0, 160, 157, 0.12); color: #00a09d; letter-spacing: 1px; font-size: 0.85rem;">
+                    Dynamic Reporting &amp; Excel Export for Odoo 20
+                </span>
+                <h1 class="display-4 font-weight-bold" style="color: #0d2b52; margin-bottom: 12px; letter-spacing: -0.5px;">
+                    Web SQL to Report
+                </h1>
+                <p class="lead mx-auto" style="color: #5a6a7e; font-size: 1.25rem; max-width: 820px; line-height: 1.6;">
+                    Effortlessly generate beautifully formatted, styled Excel (<code>.xlsx</code>) reports directly from raw SQL queries or lists of dictionaries with automatic type detection, formulas, and auto-filters.
+                </p>
+                <div class="mt-4 text-center">
+                    <img src="cover.png" alt="Web SQL to Report Banner" class="img-fluid rounded shadow-lg mx-auto d-block w-100" style="max-height: 480px; object-fit: cover; border: 1px solid #e1e7ec;" />
+                </div>
+            </div>
+        </div>
 
-    <h3>Return :</h3>
-    <p>XLSX file of the generated report.</p>
+        <!-- Value Proposition / Overview -->
+        <div class="row mt-5 pt-3">
+            <div class="col-lg-10 offset-lg-1">
+                <div class="p-4 p-md-5 rounded shadow-sm" style="background: linear-gradient(135deg, #f0f7f7 0%, #eef3f9 100%); border-left: 5px solid #00a09d;">
+                    <h3 class="font-weight-bold mb-3" style="color: #0d2b52;">
+                        <i class="fa fa-file-excel-o mr-2" style="color: #00a09d;"></i> Stop Writing Boilerplate Excel Export Code
+                    </h3>
+                    <p style="font-size: 1.05rem; line-height: 1.7; color: #475569; margin-bottom: 0;">
+                        Building custom Excel reports in Odoo typically requires dozens of lines of repetitive styling and sheet formatting. <strong>Web SQL to Report</strong> abstracts all the heavy lifting into a single, elegant Python API call. Just pass your SQL query dictionary results or data list, and receive a fully formatted, auto-columned, formula-calculated XLSX workbook ready for instant download.
+                    </p>
+                </div>
+            </div>
+        </div>
 
-    <h3>Usage Example :</h3>
-    <div class="code">
-      <h4>1. Code</h4>
-      <br/>
-        <pre>
-          def generate_report(self):
-              # Example : get data
-              query = " SELECT * from res_partner limit 10"
-              self.env.cr.execute(query)
-              my_report_data = self.env.cr.dictfetchall()
-              # Generate report
-              return self.env['web.report'].generate_report('My Report Name', my_report_data)
-        </pre>
-    
+        <!-- Key Features Section -->
+        <div class="row mt-5 pt-4">
+            <div class="col-md-12 text-center mb-5">
+                <h2 class="font-weight-bold" style="color: #0d2b52;">Key Highlights &amp; Features</h2>
+                <hr style="width: 60px; border-top: 4px solid #00a09d; margin: 15px auto;" />
+                <p class="text-muted" style="font-size: 1.1rem;">Powerful reporting utility built natively for Odoo 20 developers</p>
+            </div>
 
+            <!-- Feature 1 -->
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 shadow-sm border-0" style="transition: transform 0.25s ease, box-shadow 0.25s ease; border-radius: 12px; border: 1px solid #e8ecf1;" onmouseover="this.style.transform='translateY(-6px)'; this.style.boxShadow='0 12px 24px rgba(13,43,82,0.1)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 .125rem .25rem rgba(0,0,0,.075)';">
+                    <div class="card-body p-4 text-center">
+                        <div class="d-inline-flex align-items-center justify-content-center mb-3" style="width: 72px; height: 72px; border-radius: 50%; background: rgba(0, 160, 157, 0.1);">
+                            <i class="fa fa-database fa-2x" style="color: #00a09d;"></i>
+                        </div>
+                        <h5 class="font-weight-bold mb-2" style="color: #0d2b52;">Direct SQL Query Result Support</h5>
+                        <p class="text-muted" style="font-size: 0.95rem; line-height: 1.6;">
+                            Feeds directly from <code>cr.dictfetchall()</code> or any Python list of dictionaries without manual transformation.
+                        </p>
+                    </div>
+                </div>
+            </div>
 
-    <h4>2. From VS Code</h4>
-    <br/>
-    <img width="975" alt="Screenshot 2024-10-09 at 22 52 24" src="https://github.com/user-attachments/assets/6d5c8526-04be-48d1-a9c5-2e2ba7a154fc" style="max-width: 100%; width: 80%; margin: 0 auto; display: block;">
-    </div>
+            <!-- Feature 2 -->
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 shadow-sm border-0" style="transition: transform 0.25s ease, box-shadow 0.25s ease; border-radius: 12px; border: 1px solid #e8ecf1;" onmouseover="this.style.transform='translateY(-6px)'; this.style.boxShadow='0 12px 24px rgba(13,43,82,0.1)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 .125rem .25rem rgba(0,0,0,.075)';">
+                    <div class="card-body p-4 text-center">
+                        <div class="d-inline-flex align-items-center justify-content-center mb-3" style="width: 72px; height: 72px; border-radius: 50%; background: rgba(13, 43, 82, 0.08);">
+                            <i class="fa fa-magic fa-2x" style="color: #0d2b52;"></i>
+                        </div>
+                        <h5 class="font-weight-bold mb-2" style="color: #0d2b52;">Auto Cell Formatting</h5>
+                        <p class="text-muted" style="font-size: 0.95rem; line-height: 1.6;">
+                            Automatically detects data types (Float, Integer, Date, DateTime) and applies formatted alignments and number masks.
+                        </p>
+                    </div>
+                </div>
+            </div>
 
-    <br/><br/>
+            <!-- Feature 3 -->
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 shadow-sm border-0" style="transition: transform 0.25s ease, box-shadow 0.25s ease; border-radius: 12px; border: 1px solid #e8ecf1;" onmouseover="this.style.transform='translateY(-6px)'; this.style.boxShadow='0 12px 24px rgba(13,43,82,0.1)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 .125rem .25rem rgba(0,0,0,.075)';">
+                    <div class="card-body p-4 text-center">
+                        <div class="d-inline-flex align-items-center justify-content-center mb-3" style="width: 72px; height: 72px; border-radius: 50%; background: rgba(255, 152, 0, 0.1);">
+                            <i class="fa fa-arrows-h fa-2x" style="color: #ff9800;"></i>
+                        </div>
+                        <h5 class="font-weight-bold mb-2" style="color: #0d2b52;">Smart Column Widths</h5>
+                        <p class="text-muted" style="font-size: 0.95rem; line-height: 1.6;">
+                            Calculates maximum text and header length per column automatically so data is never truncated or squeezed.
+                        </p>
+                    </div>
+                </div>
+            </div>
 
-    <h3>Result Example :</h3>
-    <div class="example">
-        <img src="https://user-images.githubusercontent.com/52643098/134668255-ffed5b33-52bf-4762-8d60-75b007c2e38d.png" alt="Report Example" style="max-width: 100%; width: 80%; margin: 0 auto; display: block;">
-    </div>
+            <!-- Feature 4 -->
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 shadow-sm border-0" style="transition: transform 0.25s ease, box-shadow 0.25s ease; border-radius: 12px; border: 1px solid #e8ecf1;" onmouseover="this.style.transform='translateY(-6px)'; this.style.boxShadow='0 12px 24px rgba(13,43,82,0.1)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 .125rem .25rem rgba(0,0,0,.075)';">
+                    <div class="card-body p-4 text-center">
+                        <div class="d-inline-flex align-items-center justify-content-center mb-3" style="width: 72px; height: 72px; border-radius: 50%; background: rgba(40, 167, 69, 0.1);">
+                            <i class="fa fa-filter fa-2x" style="color: #28a745;"></i>
+                        </div>
+                        <h5 class="font-weight-bold mb-2" style="color: #0d2b52;">Autofilter &amp; Freeze Panes</h5>
+                        <p class="text-muted" style="font-size: 0.95rem; line-height: 1.6;">
+                            Applies interactive Excel autofilters and locks header/column freeze panes for seamless large dataset navigation.
+                        </p>
+                    </div>
+                </div>
+            </div>
 
-    <h4>Contact :</h4>
-    <p>nagara987@gmail.com</p>
+            <!-- Feature 5 -->
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 shadow-sm border-0" style="transition: transform 0.25s ease, box-shadow 0.25s ease; border-radius: 12px; border: 1px solid #e8ecf1;" onmouseover="this.style.transform='translateY(-6px)'; this.style.boxShadow='0 12px 24px rgba(13,43,82,0.1)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 .125rem .25rem rgba(0,0,0,.075)';">
+                    <div class="card-body p-4 text-center">
+                        <div class="d-inline-flex align-items-center justify-content-center mb-3" style="width: 72px; height: 72px; border-radius: 50%; background: rgba(111, 66, 193, 0.1);">
+                            <i class="fa fa-calculator fa-2x" style="color: #6f42c1;"></i>
+                        </div>
+                        <h5 class="font-weight-bold mb-2" style="color: #0d2b52;">Dynamic Formula Totals</h5>
+                        <p class="text-muted" style="font-size: 0.95rem; line-height: 1.6;">
+                            Automatically writes SUM or customized formulas at the footer row for numeric fields without manual coordinate math.
+                        </p>
+                    </div>
+                </div>
+            </div>
 
-</body>
-</html>
-</div>
+            <!-- Feature 6 -->
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 shadow-sm border-0" style="transition: transform 0.25s ease, box-shadow 0.25s ease; border-radius: 12px; border: 1px solid #e8ecf1;" onmouseover="this.style.transform='translateY(-6px)'; this.style.boxShadow='0 12px 24px rgba(13,43,82,0.1)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 .125rem .25rem rgba(0,0,0,.075)';">
+                    <div class="card-body p-4 text-center">
+                        <div class="d-inline-flex align-items-center justify-content-center mb-3" style="width: 72px; height: 72px; border-radius: 50%; background: rgba(23, 162, 184, 0.1);">
+                            <i class="fa fa-clone fa-2x" style="color: #17a2b8;"></i>
+                        </div>
+                        <h5 class="font-weight-bold mb-2" style="color: #0d2b52;">Multi-Sheet &amp; Header Summaries</h5>
+                        <p class="text-muted" style="font-size: 0.95rem; line-height: 1.6;">
+                            Create multi-tab workbooks via <code>data_sheet</code> and inject custom KPI summary headers with specific cell references (e.g. A1, B2).
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Code Usage Example -->
+        <div class="row mt-5 pt-3">
+            <div class="col-md-12">
+                <div class="card shadow-sm border-0" style="border-radius: 14px; overflow: hidden; border: 1px solid #e1e7ec;">
+                    <div class="card-header p-4" style="background: #0d2b52; color: #fff;">
+                        <h4 class="font-weight-bold mb-1"><i class="fa fa-code mr-2" style="color: #00a09d;"></i> Quick Start Developer Example</h4>
+                        <p class="mb-0 text-light" style="font-size: 0.95rem; opacity: 0.85;">Trigger an Excel report download from any Odoo model in just 4 lines of code</p>
+                    </div>
+                    <div class="card-body p-0">
+                        <pre class="p-4 mb-0" style="background-color: #0d1b2a !important; font-size: 0.95rem; overflow-x: auto; line-height: 1.65; font-family: 'SFMono-Regular', Consolas, Menlo, Monaco, monospace;"><code style="background: transparent !important; background-color: transparent !important; color: #e2e8f0 !important; padding: 0 !important; border: none !important; box-shadow: none !important; display: block; font-family: inherit;"><span style="color: #f472b6;">def</span> <span style="color: #38bdf8;">action_print_partner_report</span>(<span style="color: #93c5fd;">self</span>):
+    <span style="color: #64748b; font-style: italic;"># 1. Execute SQL query</span>
+    query <span style="color: #64748b;">=</span> <span style="color: #fde047;">"""
+        SELECT name, phone, email, credit_limit, create_date 
+        FROM res_partner 
+        WHERE customer_rank &gt; 0 
+        LIMIT 50
+    """</span>
+    <span style="color: #93c5fd;">self</span>.env.cr.execute(query)
+    report_data <span style="color: #64748b;">=</span> <span style="color: #93c5fd;">self</span>.env.cr.dictfetchall()
+
+    <span style="color: #64748b; font-style: italic;"># Option A: Quick &amp; Minimal (Standard Excel Export)</span>
+    <span style="color: #f472b6;">return</span> <span style="color: #93c5fd;">self</span>.env[<span style="color: #fde047;">'web.report'</span>].generate_report(
+        report_name<span style="color: #64748b;">=</span><span style="color: #fde047;">'Customer Report'</span>,
+        data<span style="color: #64748b;">=</span>report_data,
+    )
+
+    <span style="color: #64748b; font-style: italic;"># Option B: Advanced Customization (Header Styling, Dates &amp; Summary Footers)</span>
+    <span style="color: #64748b; font-style: italic;"># return self.env['web.report'].generate_report(</span>
+    <span style="color: #64748b; font-style: italic;">#     report_name='Customer Report',</span>
+    <span style="color: #64748b; font-style: italic;">#     data=report_data,</span>
+    <span style="color: #64748b; font-style: italic;">#     start_date='2026-01-01',          # Optional: Adds report title banner with period range</span>
+    <span style="color: #64748b; font-style: italic;">#     end_date='2026-12-31',            # Optional: End date for the title banner</span>
+    <span style="color: #64748b; font-style: italic;">#     header_color='#D9EDF7',           # Optional: Custom pastel HEX color for table headers</span>
+    <span style="color: #64748b; font-style: italic;">#     numbering=True,                   # Optional: Incremental 'No' column</span>
+    <span style="color: #64748b; font-style: italic;">#     show_total_footer=True,           # Optional: Auto SUM footer row for numeric fields</span>
+    <span style="color: #64748b; font-style: italic;"># )</span></code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Parameters Table -->
+        <div class="row mt-5 pt-3">
+            <div class="col-md-12">
+                <div class="card shadow-sm border-0" style="border-radius: 14px; overflow: hidden; border: 1px solid #e1e7ec;">
+                    <div class="card-header bg-light p-4">
+                        <h4 class="font-weight-bold mb-1" style="color: #0d2b52;"><i class="fa fa-sliders mr-2 text-primary"></i> <code>generate_report()</code> Parameters</h4>
+                        <p class="mb-0 text-muted" style="font-size: 0.95rem;">Full list of customization parameters available</p>
+                    </div>
+                    <div class="card-body p-0">
+                        <div class="table-responsive">
+                            <table class="table table-hover mb-0" style="font-size: 0.95rem;">
+                                <thead style="background-color: #f8fafc; color: #475569;">
+                                    <tr>
+                                        <th class="p-3">Parameter</th>
+                                        <th class="p-3">Type</th>
+                                        <th class="p-3">Default</th>
+                                        <th class="p-3">Description</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="p-3 font-weight-bold"><code>report_name</code></td>
+                                        <td class="p-3">str</td>
+                                        <td class="p-3"><em>Required</em></td>
+                                        <td class="p-3">File prefix and sheet name</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-3 font-weight-bold"><code>data</code></td>
+                                        <td class="p-3">list[dict]</td>
+                                        <td class="p-3"><em>Required</em></td>
+                                        <td class="p-3">List of dictionaries representing rows and headers</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-3 font-weight-bold"><code>data_sheet</code></td>
+                                        <td class="p-3">dict</td>
+                                        <td class="p-3"><code>False</code></td>
+                                        <td class="p-3">Dictionary of sheet names to data lists for multi-tab workbooks</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-3 font-weight-bold"><code>start_date / end_date</code></td>
+                                        <td class="p-3">str / date</td>
+                                        <td class="p-3"><code>False</code></td>
+                                        <td class="p-3">Adds formatted report title header with date range</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-3 font-weight-bold"><code>header_color</code></td>
+                                        <td class="p-3">str (HEX)</td>
+                                        <td class="p-3"><code>'#FFFACD'</code></td>
+                                        <td class="p-3">Hex background color for column headers and totals</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-3 font-weight-bold"><code>numbering</code></td>
+                                        <td class="p-3">bool</td>
+                                        <td class="p-3"><code>True</code></td>
+                                        <td class="p-3">Adds an incremental row number ("No") column at index 0</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-3 font-weight-bold"><code>auto_filter</code></td>
+                                        <td class="p-3">bool</td>
+                                        <td class="p-3"><code>True</code></td>
+                                        <td class="p-3">Enables Excel filter dropdowns on the header row</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-3 font-weight-bold"><code>freeze_panes</code></td>
+                                        <td class="p-3">bool</td>
+                                        <td class="p-3"><code>True</code></td>
+                                        <td class="p-3">Freezes header row and specified leading columns</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-3 font-weight-bold"><code>show_total_footer</code></td>
+                                        <td class="p-3">bool</td>
+                                        <td class="p-3"><code>True</code></td>
+                                        <td class="p-3">Appends formula sum row at the bottom for numeric columns</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Support / Contact Section -->
+        <div class="row mt-5 pt-4 text-center">
+            <div class="col-12">
+                <div class="p-5 rounded" style="background: #f8fafc; border: 1px solid #e1e7ec;">
+                    <h3 class="font-weight-bold" style="color: #0d2b52;">Need Help or Custom Implementations?</h3>
+                    <p class="text-muted mt-2 mb-4" style="font-size: 1.05rem;">
+                        Feel free to contact the author for custom module development or inquiries.
+                    </p>
+                    <a href="https://www.linkedin.com/in/nagara-liong-50ab07136/" target="_blank" class="btn btn-lg px-5 py-3 font-weight-bold text-white shadow-sm" style="background-color: #00a09d; border-radius: 30px;">
+                        <i class="fa fa-envelope-o mr-2"></i> Contact Developer
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </section>
 </body>
 </html>
